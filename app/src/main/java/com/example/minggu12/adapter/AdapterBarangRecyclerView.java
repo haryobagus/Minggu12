@@ -27,9 +27,7 @@ public class AdapterBarangRecyclerView extends RecyclerView.Adapter<AdapterBaran
     private AppDatabase db;
 
     public AdapterBarangRecyclerView(ArrayList<Barang> barangs, Context ctx){
-        /**
-         * Inisiasi data dan variabel yang akan digunakan
-         */
+
         daftarBarang = barangs;
         context = ctx;
 
@@ -39,11 +37,6 @@ public class AdapterBarangRecyclerView extends RecyclerView.Adapter<AdapterBaran
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        /**
-         * Inisiasi View
-         * Di tutorial ini kita hanya menggunakan data String untuk tiap item
-         * dan juga view nya hanyalah satu TextView
-         */
         TextView tvTitle;
         CardView cvMain;
 
@@ -56,9 +49,7 @@ public class AdapterBarangRecyclerView extends RecyclerView.Adapter<AdapterBaran
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        /**
-         *  Inisiasi ViewHolder
-         */
+
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_barang, parent, false);
         // mengeset ukuran view, margin, padding, dan parameter layout lainnya
         ViewHolder vh = new ViewHolder(v);
@@ -67,17 +58,12 @@ public class AdapterBarangRecyclerView extends RecyclerView.Adapter<AdapterBaran
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        /**
-         *  Menampilkan data pada view
-         */
         final String name = daftarBarang.get(position).getNamaBarang();
 
         holder.cvMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /**
-                 *  Kodingan untuk tutorial Selanjutnya :p Read detail data
-                 */
+
                 Barang barang = db.barangDAO().selectBarangDetail(daftarBarang.get(position).getBarangId());
                 context.startActivity(RoomReadSingleActivity.getActIntent((Activity) context).putExtra("data", barang));
             }
@@ -85,9 +71,7 @@ public class AdapterBarangRecyclerView extends RecyclerView.Adapter<AdapterBaran
         holder.cvMain.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                /**
-                 *  Kodingan untuk tutorial Selanjutnya :p Delete dan update data
-                 */
+
                 final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.view_dialog);
                 dialog.setTitle("Pilih Aksi");
@@ -136,9 +120,7 @@ public class AdapterBarangRecyclerView extends RecyclerView.Adapter<AdapterBaran
 
     @Override
     public int getItemCount() {
-        /**
-         * Mengembalikan jumlah item pada barang
-         */
+
         return daftarBarang.size();
     }
 }

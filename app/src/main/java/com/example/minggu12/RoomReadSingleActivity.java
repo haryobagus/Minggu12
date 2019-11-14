@@ -38,7 +38,6 @@ public class RoomReadSingleActivity extends AppCompatActivity {
     }
 
     public static Intent getActIntent(Activity activity) {
-        // kode untuk pengambilan Intent
         return new Intent(activity, RoomReadSingleActivity.class);
     }
 }
